@@ -1,0 +1,22 @@
+{
+  "name": "chiffonier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cansu2/Chiffonier.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cansu2/Chiffonier/issues"
+  },
+  "homepage": "https://github.com/cansu2/Chiffonier#readme",
+  "dependencies": {
+    "sequelize-cli": "^4.0.0"
+  }
+}
