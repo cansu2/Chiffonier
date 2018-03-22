@@ -14,10 +14,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
 app.use(express.static("public"));
+app.use(express.static("public/Theme")); //???
 
 // Routes
 // =============================================================
-require("./routes/user-api-routes.js")(app);
+require("./routes/clothes-api-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 

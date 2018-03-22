@@ -1,45 +1,44 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/users", function(req, res) {
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.User.findAll({
-      include: [db.User]
-    }).then(function(dbUser) {
-      res.json(dbUser);
+  // This is the route for finding all items in a user's closet.
+  // It should show all their items the casual and formal tables.
+  app.get("/api/newUser", function(req, res) {
+    db.Info.findAll({
+      include: [db.Info]
+    }).then(function(dbInfo) {
+      res.json(dbInfo);
     });
   });
 
-  app.get("/api/users/:id", function(req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.User.findOne({
+  // Here we show a user one item of clothing
+  app.get("/api/newUser/:id", function(req, res) {
+    db.Info.findOne({
       where: {
         id: req.params.id
       },
-      include: [db.User]
-    }).then(function(dbUser) {
-      res.json(dbUser);
+      include: [db.Info]
+    }).then(function(dbInfo) {
+      res.json(dbInfo);
     });
   });
 
-  app.post("/api/user", function(req, res) {
-    db.User.create(req.body).then(function(dbUser) {
-      res.json(dbUser);
+  // This is for a user to create a new item in their closet
+  app.post("/api/newUser", function(req, res) {
+    db.Info.create(req.body).then(function(dbInfo) {
+      res.json(dbInfo);
     });
   });
 
-  app.delete("/api/user/:id", function(req, res) {
-    db.User.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
-  });
+  // this allows a user to delete an item from their closet
+  // app.delete("/api/user/:id", function(req, res) {
+  //   db.User.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then(function(dbUser) {
+  //     res.json(dbUser);
+  //   });
+  // });
 
 };
