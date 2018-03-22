@@ -1,18 +1,11 @@
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
-
-// Dependencies
-// =============================================================
-
-// Requiring our models
+// I don't think we will need this entire file.  
+// There is no reason to show all items our database unless
+// we create an admin section of the app
 var db = require("../models");
 
-// Routes
-// =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the posts
+  // GET route for getting all of the clothes
   app.get("/api/clothes", function(req, res) {
     var query = {};
     if (req.query.author_id) {
