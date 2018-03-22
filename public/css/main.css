@@ -123,6 +123,20 @@ ul li {
 	transition: padding 0.3s;
 	position: relative;
 }
+#header .header-content2 {
+	margin: 0 auto;
+	height: 1000px;
+	max-width: 1170px;
+	padding: 60px 0;
+	width: 100%;
+	-moz-transition: padding 0.3s;
+	-o-transition: padding 0.3s;
+	-webkit-transition: padding 0.3s;
+	transition: padding 0.3s;
+	position: relative;
+}
+
+
 #header .logo {
 	float: left;
 	font-size:24px;
@@ -144,6 +158,12 @@ ul li {
 	display: inherit;
 	color: #ffffff;
 }
+#header .logo #a{
+	padding-top: 10%;
+	display: inherit;
+	color: #ffffff;
+}
+
 #header.fixed .header-content .logo a{
 	padding-top: 16%;
 	color: #ffffff;
@@ -407,7 +427,8 @@ color: #fff;
 font-weight: bold;
 }
 .section-header p{
-	color: #fff;
+	
+color: #fff;
 }
 .package h5{
 	color:#fff;
