@@ -1,6 +1,3 @@
-// I don't think we will need this entire file.  
-// There is no reason to show all items our database unless
-// we create an admin section of the app
 var db = require("../models");
 
 module.exports = function(app) {
