@@ -6,6 +6,8 @@ $(document).ready(function() {
     var itemType = $("#itemType");
     var itemWarmth = $("#itemWarmth");
     var itemPicture = $("#itemPic");
+
+
     
     // Giving the postCategorySelect a default value
     // postCategorySelect.val("Personal");
@@ -25,17 +27,32 @@ $(document).ready(function() {
         warmth: itemWarmth.val(),
         picture: itemPicture.val()
       };
+
+      var newObj = {
+        name: itemType.val(),
+        type: itemType.val().trim(),
+        type: itemType.val().trim()
+      }
   
       console.log(newClothes);
 
     $.post("/api/clothes", newClothes)
     .done(function(arg){
-       
-        alert("new item added")
-        window.location.href = "/basic_table.html";
+       putItemToTable(newObj,takeMeToTheList);
     });
-  
-});
+    
+   function putItemToTable(obj, cb){
+      var newItem = '<tr><td>'+ obj.name +'</td></tr><td>'+obj.type+'</td><img class="img-circle" width="90" src"'+obj.picture+'"/>';
+      $('#itemList').append(newItem);
+      cb();
+    }
+
+   function takeMeToTheList() {
+    window.location.href = "/basic_table.html";
+   }
+
+    });
 
   });
+  
   
