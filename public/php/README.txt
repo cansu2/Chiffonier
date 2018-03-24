@@ -1,1 +1,0 @@
-To get contact form working please purchase the template.

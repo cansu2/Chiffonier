@@ -7,8 +7,8 @@ module.exports = function(app) {
 
   app.get("/api/clothes", function(req, res) {
     var query = {};
-    if (req.query.Info_id) {
-      query.InfoId = req.query.Info_id;
+    if (req.query.info_id) {
+      query.InfoId = req.query.info_id;
     }
     db.Clothes.findAll({
       where: query
