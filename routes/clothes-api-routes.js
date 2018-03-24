@@ -5,14 +5,10 @@ var db = require("../models");
 
 module.exports = function(app) {
 
-<<<<<<< HEAD
-  // GET route for getting all of the clothes
-=======
->>>>>>> 200f6c90bcf6475e04957f76d015072e0e4b8c6d
   app.get("/api/clothes", function(req, res) {
     var query = {};
-    if (req.query.Info_id) {
-      query.InfoId = req.query.Info_id;
+    if (req.query.info_id) {
+      query.InfoId = req.query.info_id;
     }
     db.Clothes.findAll({
       where: query

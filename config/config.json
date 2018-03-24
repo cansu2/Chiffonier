@@ -1,6 +1,5 @@
 {
-<<<<<<< HEAD
-    "development": {
+      "development": {
       "username": "root",
       "password": "Astros1!",
       "database": "chiffonier",
@@ -21,27 +20,4 @@
       "host": "127.0.0.1",
       "dialect": "mysql"
     }
-=======
-  "development": {
-    "username": "root",
-    "password": "Uykusuz34!",
-    "database": "chiffonier",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
->>>>>>> 200f6c90bcf6475e04957f76d015072e0e4b8c6d
-  }
 }
