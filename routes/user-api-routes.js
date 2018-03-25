@@ -23,45 +23,26 @@ module.exports = function(app) {
     });
   });
 
-  
-
-  // app.post("/api/newUser", function(req, res) {
-  //   db.Info.create(req.body).then(function(dbInfo) {
-  //     res.json(dbInfo);
-  //   });
-  // });
+  // This is for a user to create a new item in their closet
   app.post("/api/newUser", function(req, res) {
     db.Info.findOne({
       where: {
         userEmail: req.body.userEmail
       }
-    }).then(data => {
-      console.log("this is user email " + req.body.userEmail);
-      console.log(data);
-        if (data == null) {           
-          db.Info.create(req.body).then(function(dbInfo) {
+     }).then( data => {
+       console.log("email");
+       console.log(data);
+       if ( data == null){
+        db.Info.create(req.body).then(function(dbInfo) {
           res.json(dbInfo);
-          })
-        } else {
-          console.log("this user exists");
-          res.json(data);          
-        }        
-    });
+        })
+       } else {
+         console.log("this user exists");
+         res.json(data)
+       }
+     });  
   });
 
-
-
-
-      // (function(newUser){
-      //    if (newUser){
-      //      callback();
-      //    } else {
-      //      db.Info.create(req.body).then(function(dbInfo) {
-      //        res.json(dbInfo)
-      //        callback();
-      //      })
-      //    }
-      //  })
   // this allows a user to delete an item from their closet
   // app.delete("/api/user/:id", function(req, res) {
   //   db.User.destroy({

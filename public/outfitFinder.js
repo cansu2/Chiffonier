@@ -18,7 +18,6 @@
     // math.random shoes
 
 // attr.() to the picture canvas in the html
-
 var db = require("../models");
 
 var array  = [];
@@ -56,5 +55,5 @@ function getCombine(temp) {
 
 
 function grabClothes(arg){
-    
+
 }

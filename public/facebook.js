@@ -1,5 +1,4 @@
 // {/* <script type="text/javascript"> */}
-// var db = require("../models");
     
     window.fbAsyncInit = function() {
     // FB JavaScript SDK configuration and setup
@@ -19,11 +18,6 @@
     });
 };
 
-// function that refrences db check if email exists
-// else logs user in
-
-// if user email isn't in db, push info to db
-
 // Load the JavaScripat SDK asynchronously
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -40,7 +34,7 @@ function fbLogin() {
             // Get and display the user profile data
     
             // getFbUserData();
-           grabData();
+            grabData()
             // window.location.replace("./Theme/index.html");
 
         } else {
@@ -78,25 +72,6 @@ function fbLogout() {
 
 // function saveUserData(userData){
 //     $.post('put your config file', {oauth_provider:'facebook',userData: JSON.stringify(userData)}, function(data){ return true; });
-// }
-// if user email is new
-// function findUser() {
-//     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
-//     function (response) {
-//         Info.findOrCreate({
-//             where: {
-//                 userEmail: response.email
-//             },
-//             defaults: {
-//                 userEmail: response.email
-//             }
-//         }).error(function(err){
-//             console.log('error');
-
-//         }).then(function(){
-//             grabData();
-//         })
-//     });
 // }
 
 function grabData(){

@@ -1,11 +1,14 @@
+// I don't think we will need this entire file.  
+// There is no reason to show all items our database unless
+// we create an admin section of the app
 var db = require("../models");
 
 module.exports = function(app) {
 
   app.get("/api/clothes", function(req, res) {
     var query = {};
-    if (req.query.info_id) {
-      query.InfoId = req.query.info_id;
+    if (req.query.Info_id) {
+      query.InfoId = req.query.Info_id;
     }
     db.Clothes.findAll({
       where: query

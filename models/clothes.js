@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     warmth: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     picture: {
       type: DataTypes.STRING,
@@ -31,14 +31,11 @@ module.exports = function(sequelize, DataTypes) {
   }
   });
 
-  // Clothes.associate = function(models){
-  //   Clothes.belongsTo(models.Info,{
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
+
+  
   return Clothes;
 };
+
+
 
 

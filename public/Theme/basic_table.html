@@ -106,68 +106,14 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-            <h3><i class="fa fa-angle-right"></i> Clothes Table</h3>
+            <h3><i class="fa fa-angle-right"></i> Your Clothes</h3>
 
-              <div class="row">
-                <div class="col-md-12">
-                    <div class="content-panel">
-                          <!-- <h4><i class="fa fa-angle-right"></i> Clothes Tab</h4> -->
-                          <hr>
-                      <table class="table">
-                          <thead>
-                          <tr>
-                              <th>#</th>
-                              <th>Item Name</th>
-                              <th>Type</th>
-                              <th>Color</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                          </tr>
-                            <form ref='uploadForm' 
-                                id='uploadForm' 
-                                action='http://localhost:8080/upload' 
-                                method='post' 
-                                encType="multipart/form-data">
-                                    <input type="file" name="sampleFile" />
-                                    <input type='submit' value='Upload!' />
-                            </form>     
-                          </tbody>
-                      </table>
-                    </div>
-              </div><!-- /col-md-12 -->
+            <div class="row">
+                <div class="content-panel">
+                </div>
             </div>
             </section>
            
-
-      <!--main content end-->
-      <!--footer start-->
-      <!-- <footer class="site-footer">
-          <div class="text-center">
-             
-              <a href="index.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer> -->
-      <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
@@ -192,75 +138,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../facebook.js"></script>
 	
-	
-	<!-- <script type="text/javascript">
-        $(document).ready(function () {
-        var unique_id = $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'Welcome to Dashgum!',
-            // (string | mandatory) the text inside the notification
-            text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
-            // (string | optional) the image to display on the left
-            image: 'assets/img/ui-sam.jpg',
-            // (bool | optional) if you want it to fade out on its own or just sit there
-            sticky: true,
-            // (int | optional) the time you want it to be alive for before fading out
-            time: '',
-            // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
-        });
+    <script type="text/javascript">
 
-        return false;
-        });
-	</script> -->
-	
-    <script type="application/javascript">
-        $(document).ready(function () {
-            $("#date-popover").popover({html: true, trigger: "manual"});
-            $("#date-popover").hide();
-            $("#date-popover").click(function (e) {
-                $(this).hide();
-            });
-        
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
-        });
-        
-        
-        function myNavFunction(id) {
-            $("#date-popover").hide();
-            var nav = $("#" + id).data("navigation");
-            var to = $("#" + id).data("to");
-            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        }
-        
         var clothesContainer = $(".content-panel");
 
-        //   var posts;
-
-        // The code below handles the case where we want to get blog posts for a specific author
-        // Looks for a query param in the url for author_id
         var url = window.location.search;
         var infoId;
+
         if (url.indexOf("?info_id=") !== -1) {
         infoId = url.split("=")[1];
         getPosts(infoId);
         }
-        // If there's no authorId we just get all posts as usual
         else {
         getClothes();
         }
@@ -272,6 +160,8 @@
             }
             $.get("/api/clothes" + infoId, function(data) {
                 console.log("Clothes", data);
+
+                console.log(data[1].itemName);
                 clothes = data;
                 if (!clothes || !clothes.length) {
                     displayEmpty(info);
@@ -280,7 +170,7 @@
                     initializeRows();
                 }
             });
-        } 
+        }
 
         function initializeRows() {
             clothesContainer.empty();
@@ -291,51 +181,24 @@
                 clothesContainer.append(clothesToAdd);
         }
 
-          // This function constructs a post's HTML
         function createNewRow(clothes) {
-            var formattedDate = new Date(clothes.createdAt);
-            formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-            var newClothesPanel = $("<div>");
-            newClothesPanel.addClass("panel panel-default");
-            var newClothesPanelHeading = $("<div>");
-            newClothesPanelHeading.addClass("panel-heading");
-            var deleteBtn = $("<button>");
-            deleteBtn.text("x");
-            deleteBtn.addClass("delete btn btn-danger");
-            var editBtn = $("<button>");
-            editBtn.text("EDIT");
-            editBtn.addClass("edit btn btn-info");
-            var newClothesTitle = $("<h2>");
-            var newPostDate = $("<small>");
-            var newPostAuthor = $("<h5>");
-            // newPostAuthor.text(clothes.info.userName);
-            newPostAuthor.css({
-            float: "right",
-            color: "blue",
-            "margin-top":
-            "-10px"
-            });
-            var newClothesPanelBody = $("<div>");
-            newClothesPanelBody.addClass("panel-body");
-            var newPostBody = $("<img>");
-            newPostBody.attr(clothes.picture, newPostBody.attr("src")).removeAttr("src");
-            newClothesTitle.text(clothes.itemName + " ");
-            newPostBody.text(clothes.picture);
-            newPostDate.text(formattedDate);
-            newClothesTitle.append(newPostDate);
-            newClothesPanelHeading.append(deleteBtn);
-            newClothesPanelHeading.append(editBtn);
-            newClothesPanelHeading.append(newClothesTitle);
-            // newClothesPanelHeading.append(newPostAuthor);
-            newClothesPanelBody.append(newPostBody);
-            newClothesPanel.append(newClothesPanelHeading);
-            newClothesPanel.append(newClothesPanelBody);
-            newClothesPanel.data("clothes", clothes);
-            return newClothesPanel;
-            
-            }
-    </script>
-  
+             var newClothesPanel = $("<div>");
+             newClothesPanel.addClass("col-md-3 col-sm-3 mb white-panel pn");
+              
+             var newClothesName = $("<p>");
+             var newClothesImage = $("<img>");
+             newClothesName.css({
+                 color:"black"
+             })
+              
+             newClothesName.text(clothes.itemName + " ");
+             newClothesPanel.append(newClothesName);
+             newClothesPanel.data("clothes", clothes);
+             console.log(clothes)
+             console.log(clothes.itemName);
 
+             return newClothesPanel;
+        }
+    </script>
   </body>
 </html>
