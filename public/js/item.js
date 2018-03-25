@@ -27,7 +27,8 @@ $(document).ready(function() {
         type: itemType.val(),
         color: itemColor.val(),
         warmth: itemWarmth.val(),
-        picture: itemPicture.val()
+        picture: itemPicture.val(),
+        InfoId: window.localStorage.getItem('INFOID'),
       };
   
       console.log(newClothes);

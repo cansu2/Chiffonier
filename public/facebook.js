@@ -75,29 +75,6 @@ function fbLogout() {
     });
 }
 
-// function saveUserData(userData){
-//     $.post('put your config file', {oauth_provider:'facebook',userData: JSON.stringify(userData)}, function(data){ return true; });
-// }
-// if user email is new
-// function findUser() {
-//     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
-//     function (response) {
-//         Info.findOrCreate({
-//             where: {
-//                 userEmail: response.email
-//             },
-//             defaults: {
-//                 userEmail: response.email
-//             }
-//         }).error(function(err){
-//             console.log('error');
-
-//         }).then(function(){
-//             grabData();
-//         })
-//     });
-// }
-
 function grabData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
     function (response) {
@@ -110,7 +87,8 @@ function grabData(){
          //ajax
         $.post("/api/newUser", newUser)
         .done(function(arg){
-            console.log(arg);
+            console.log('arg.id',arg.id);
+            window.localStorage.setItem('INFOID', arg.id);
             alert("new user added")
             window.location.replace("./Theme/index.html");
         });
