@@ -190,9 +190,12 @@
              newClothesName.css({
                  color:"black"
              })
-              
+
+             newClothesImage.attr("src", clothes.picture);
+             console.log(clothes.picture);
              newClothesName.text(clothes.itemName + " ");
              newClothesPanel.append(newClothesName);
+             newClothesPanel.append(newClothesImage);
              newClothesPanel.data("clothes", clothes);
              console.log(clothes)
              console.log(clothes.itemName);
@@ -202,3 +205,25 @@
     </script>
   </body>
 </html>
+
+<!-- var clothesContainerToday = $(".content-panel today");
+
+var outfitDiv = $("<div>");
+
+var topName = $("<p>");
+var bottomName = $("<p>"); 
+var shoesName = $("<p>");
+
+    topName.text(top);
+    bottomName.text(bottom);
+    shoesName.text(shoe);
+
+    outfitDiv.append(topName)
+    outfitDiv.append(bottomName)
+    outfitDiv.append(shoesName)
+
+    clothesContainerToday.append(outfitDiv)
+    
+
+
+    var clothesContainerTomorrow = $(".content-panel tomorrow"); -->

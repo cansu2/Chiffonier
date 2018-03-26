@@ -45,15 +45,105 @@ $("#combineTomorrow").click(getCombine(tomorrowTemp));
 
 function getCombine(temp) {
     if (temp >= 0 && temp <= 30) {
-        grabClothes()
+        grabClothes(3)
     } else if (temp >= 30 && temp <= 70) {
-
+        grabClothes(2)
     } else if (temp >= 70 && temp <= 90) {
-
+        grabClothes(1)
     }
 }
 
 
-function grabClothes(arg){
+var bottoms1 = [];
+var tops1 = [];
 
+var shoes = [];
+
+var bottoms2 = [];
+var tops2 = [];
+
+var bottoms3 = [];
+var tops3 = [];
+
+var url = window.location.search;
+        var infoId;
+
+        if (url.indexOf("?info_id=") !== -1) {
+        infoId = url.split("=")[1];
+        getPosts(infoId);
+        }
+        else {
+        getClothes();
+        }
+
+
+
+    function getClothes(info) {
+            infoId = info || "";
+            if (infoId) {
+            infoId = "/?info_id=" + infoId;
+            }
+            $.get("/api/clothes" + infoId, function(data) {
+                console.log("Clothes", data);
+
+                // console.log(data[1].itemName);
+                clothes = data;
+
+                var warm = data.warmth
+                
+                if (warm == 1){
+
+                   bottoms1.push(data["Bottom"]);
+                   tops1.push(data["Top"]);
+                   shoes.push(data["Shoes"]);
+
+                } else if (warm == 2) {
+
+                    bottoms2.push(data["Bottom"]);
+                    tops2.push(data["Top"]);
+                    shoes.push(data["Shoes"]);
+
+                } else if (warm == 3) {
+
+                    bottoms3.push(data["Bottom"]);
+                    tops3.push(data["Top"]);
+                    shoes.push(data["Shoes"]);
+                }
+
+                
+            });
+    }
+var outfit = [];
+
+function grabClothes(arg){  
+        if (arg == 1 ){
+
+            var top = tops1[Math.floor(tops1.length * math.random())];
+            var bottom = bottoms1[Math.floor(bottoms1.length * math.random())];
+            var shoes = shoes[Math.floor(shoes.length * math.random())];
+            outfit.push(top)
+            outfit.push(bottom)
+            outfit.push(shoes)
+
+
+        } else if (arg == 2) {
+
+            var top = tops2[Math.floor(tops2.length * math.random())];
+            var bottom = bottoms2[Math.floor(bottoms2.length * math.random())];
+            var shoes = shoes[Math.floor(shoes.length * math.random())];
+            outfit.push(top)
+            outfit.push(bottom)
+            outfit.push(shoes)     
+
+        
+        } else if (arg == 3) {
+            var top = tops3[Math.floor(tops3.length * math.random())];
+            var bottom = bottoms3[Math.floor(bottoms3.length * math.random())];
+            var shoes = shoes[Math.floor(shoes.length * math.random())];
+            outfit.push(top)
+            outfit.push(bottom)
+            outfit.push(shoes)
+
+        }
+        return outfit
 }

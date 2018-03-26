@@ -1,6 +1,4 @@
-// const express = require('express');
-// const fileUpload = require('express-fileupload');
-// const app = express();
+
 
 $(document).ready(function() {
  
@@ -16,7 +14,7 @@ $(document).ready(function() {
     // Adding an event listener for when the form is submitted
     $("#add-btn").on("click", function handleFormSubmit(event) {
       event.preventDefault();
-      console.log("joe");
+      // console.log("joe");
       // Wont submit the post if we are missing a body or a title
       if (!itemName.val().trim() || !itemColor.val().trim()) {
         return;
@@ -30,7 +28,7 @@ $(document).ready(function() {
         picture: itemPicture.val()
       };
   
-      console.log(newClothes);
+      console.log("new CLOTHES", newClothes);
 
     $.post("/api/clothes", newClothes)
     .done(function(arg){
