@@ -43,7 +43,10 @@ $("#combineToday").click(showIt(today));
 $("#combineTomorrow").click(getCombine(tomorrowTemp));
 $("#combineToday").click(showIt(tomorrow));
 
-
+// this uses the weather api to select warmth from our clohtes array
+// arg 3 is for clothes with a warmth of 3
+// arg 2 is for clothes with a warmth of 2
+// arg 1 ''  '' 1
 function getCombine(temp) {
     if (temp >= 0 && temp <= 30) {
         grabClothes(3)

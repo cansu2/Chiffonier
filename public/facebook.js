@@ -89,7 +89,7 @@ function grabData(){
         .done(function(arg){
             console.log('arg.id',arg.id);
             window.localStorage.setItem('INFOID', arg.id);
-            alert("new user added")
+            alert("Welcome back " + response.first_name + "!")
             window.location.replace("./Theme/index.html");
         });
     });

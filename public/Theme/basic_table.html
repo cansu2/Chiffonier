@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-
+    <link href="public/css/responsive.css" rel="stylesheet">
     <script src="assets/js/chart-master/Chart.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -54,7 +54,8 @@
             </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="login.html">Logout</a></li>
+                    <!-- <li><a class="logout" href="login.html">Logout</a></li> -->
+                    <li><a class="logout" href="../index.html" id="fbLink2">Logout</a></li>
             	</ul>
             </div>
         </header>
@@ -150,7 +151,7 @@
         else {
         getClothes();
         }
-        
+
         function getClothes(info) {
             infoId = info || "";
             if (infoId) {
@@ -160,7 +161,7 @@
             $.get("/api/clothes" + infoId, function(data) {
                 
                 console.log("Clothes", data);
-                console.log(data[1].itemName);
+                // console.log(data[1].itemName);
                 clothes = data;
 
                 var newBottoms = [];
@@ -188,6 +189,11 @@
               
              var newClothesName = $("<p>");
              var newClothesImage = $("<img>");
+             newClothesImage.css({
+                 width:"200px",
+                 height:"200px"
+             })
+             
              newClothesName.css({
                  color:"black"
              })
