@@ -145,16 +145,20 @@
         if (url.indexOf("?info_id=") !== -1) {
         infoId = url.split("=")[1];
         getPosts(infoId);
+        
         }
         else {
         getClothes();
         }
+        
         function getClothes(info) {
             infoId = info || "";
             if (infoId) {
             infoId = "/?info_id=" + infoId;
+            console.log(infoId);
             }
             $.get("/api/clothes" + infoId, function(data) {
+                
                 console.log("Clothes", data);
                 console.log(data[1].itemName);
                 clothes = data;

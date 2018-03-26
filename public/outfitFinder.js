@@ -18,7 +18,6 @@
     // math.random shoes
 
 // attr.() to the picture canvas in the html
-var db = require("../models");
 
 var array  = [];
 
@@ -40,7 +39,9 @@ $.ajax({
   });
 
 $("#combineToday").click(getCombine(todayTemp));
+$("#combineToday").click(showIt(today));
 $("#combineTomorrow").click(getCombine(tomorrowTemp));
+$("#combineToday").click(showIt(tomorrow));
 
 
 function getCombine(temp) {
@@ -53,18 +54,12 @@ function getCombine(temp) {
     }
 }
 
-var newBottoms = [];
-
-var bottoms1 = [];
-var tops1 = [];
-
+var bottoms = [];
+var tops = [];
 var shoes = [];
-
-var bottoms2 = [];
-var tops2 = [];
-
-var bottoms3 = [];
-var tops3 = [];
+var bottom = "";
+var top = "";
+var shoe = "";
 
 var url = window.location.search;
         var infoId;
@@ -77,80 +72,65 @@ var url = window.location.search;
         getClothes();
         }
 
-
-        getClothes();
     function getClothes(info) {
             infoId = info || "";
             if (infoId) {
             infoId = "/?info_id=" + infoId;
             }
+            console.log(infoId);
             $.get("/api/clothes" + infoId, function(data) {
                 console.log("Clothes", data);
 
                 // console.log(data[1].itemName);
                 clothes = data;
             
-                var warm = data.warmth
-                newBottoms.push(clothes.filter(item=>item.type == "Bottom"));
-                console.log(newBottoms);
-                if (warm == 1){
+                // var warm = data.warmth;
+                bottoms.push(clothes.filter(item=>item.type == "Bottom"));
+                console.log(bottoms);
+                tops.push(clothes.filter(item=>item.type == "Top"));
+                shoes.push(clothes.filter(item=>item.type == "Shoes"));
+    
+        function grabClothes(arg) {  
+        // run filter that matches number passed in
+            bottoms.push(clothes.filter(item=>item.type == "Bottom" && item.warmth == arg));
+            tops.push(clothes.filter(item=>item.type == "Top" && item.warmth == arg));
+            shoes.push(clothes.filter(item=>item.type == "Shoes" && item.warmth == arg));
 
-                   bottoms1.push(data["Bottom"]);
-                   tops1.push(data["Top"]);
-                   shoes.push(data["Shoes"]);
-
-                } else if (warm == 2) {
-
-                    bottoms2.push(data["Bottom"]);
-                    tops2.push(data["Top"]);
-                    shoes.push(data["Shoes"]);
-
-                } else if (warm == 3) {
-
-                    bottoms3.push(data["Bottom"]);
-                    tops3.push(data["Top"]);
-                    shoes.push(data["Shoes"]);
-                }
-
-                
-            });
-    }
-var outfit = [];
-
-function grabClothes(arg){  
-    // run filter that matches number passed in
-            newBottoms.push(clothes.filter(item=>item.type == "Bottom" && item.warmth == arg));
-            console.log(newBottoms); 
-            var bottom = newBottoms[Math.floor(newBottoms.length * math.random())];
-        if (arg == 1 ){
-            
-
-            var top = tops1[Math.floor(tops1.length * math.random())];
-           
-            var shoes = shoes[Math.floor(shoes.length * math.random())];
-            outfit.push(top)
-            outfit.push(bottom)
-            outfit.push(shoes)
-
-
-        } else if (arg == 2) {
-
-            var top = tops2[Math.floor(tops2.length * math.random())];
-            var bottom = bottoms2[Math.floor(bottoms2.length * math.random())];
-            var shoes = shoes[Math.floor(shoes.length * math.random())];
-            outfit.push(top)
-            outfit.push(bottom)
-            outfit.push(shoes)     
-
-        
-        } else if (arg == 3) {
-            var top = tops3[Math.floor(tops3.length * math.random())];
-            var bottom = bottoms3[Math.floor(bottoms3.length * math.random())];
-            var shoes = shoes[Math.floor(shoes.length * math.random())];
-            outfit.push(top)
-            outfit.push(bottom)
-            outfit.push(shoes)
+            console.log(bottoms); 
+            console.log(tops);
+            console.log(shoes);
+            bottom = bottoms[Math.floor(bottoms.length * math.random())];
+            top = tops[Math.floor(tops.length * math.random())];
+            shoe = shoes[Math.floor(shoes.length * math.random())];
 
         }
-        return outfit
+    });
 }
+
+function showIt(something){
+    var clothesContainerToday = something;
+
+    var outfitDiv = $("<div>");
+
+    var topName = $("<p>");
+    var bottomName = $("<p>"); 
+    var shoesName = $("<p>");
+
+   topName.text(top);
+   bottomName.text(bottom);
+   shoesName.text(shoe);
+
+   outfitDiv.append(topName)
+   outfitDiv.append(bottomName)
+   outfitDiv.append(shoesName)
+
+   clothesContainerToday.append(outfitDiv)
+    
+}
+
+
+    
+   
+
+
+//    var clothesContainerTomorrow = $(".content-panel tomorrow");
