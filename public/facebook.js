@@ -70,10 +70,6 @@ function fbLogout() {
     });
 }
 
-// function saveUserData(userData){
-//     $.post('put your config file', {oauth_provider:'facebook',userData: JSON.stringify(userData)}, function(data){ return true; });
-// }
-
 function grabData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
     function (response) {
@@ -86,8 +82,9 @@ function grabData(){
          //ajax
         $.post("/api/newUser", newUser)
         .done(function(arg){
-            console.log(arg);
-            alert("Welcome Back")
+            console.log('arg.id',arg.id);
+            window.localStorage.setItem('INFOID', arg.id);
+            alert("Welcome back " + response.first_name + "!")
             window.location.replace("./Theme/index.html");
         });
     });

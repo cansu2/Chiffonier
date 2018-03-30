@@ -87,7 +87,7 @@
                   <li class="sub-menu">
                       <a href="form_component.html" >
                           <i class="fa fa-tasks"></i>
-                          <span>Create Your Closet</span>
+                          <span >Create Your Closet</span>
                       </a>
                   </li>
                   <li class="sub-menu">
@@ -138,7 +138,11 @@
                                       <canvas id="iconToday" width="90" height="90"></canvas> 
                                 <p id="todayTemp">Temperature</p>
                                 <p>Denver, CO</p>
+<<<<<<< HEAD
                                 <button id="combineToday">Create your Outfit</button>
+=======
+                                <button id="combineToday" style="background: white;  "><a style="color:black;">Create your Outfit</a></button>
+>>>>>>> 82d2511bad5dc7fac29e117491bd8175ab40870c
                       		</div>
                       	</div><!-- /col-md-4 -->
                       	
@@ -153,7 +157,7 @@
                                     </canvas>
                                     <p id="tomorrowTemp">Temperature</p>
                                     <p>Denver, CO</p>
-                                    <button id="combineTomorrow">Create your Outfit</button>
+                                    <button id="combineTomorrow" style="background: white; "><a style="color:black;">Create your Outfit</a></button>
 							</div>
 						</div><!-- /col-md-4 -->
                     
@@ -161,7 +165,8 @@
                     </div><!-- /row -->
                     
                     				
-					<div class="row outfit">
+					<div class="row">
+                       
 						<!-- TWITTER PANEL -->
 						<!-- <div class="col-md-4 mb">
                       		<div class="darkblue-panel pn">
@@ -173,24 +178,29 @@
                         <!-- /col-md-4 -->
 						
 						
-						<!-- <div class="col-md-6 mb">
-							<div class="darkblue-panel pn">
-                                <div class="darkblue-header">
+						<div class="col-md-6 mb">
+							<div class="darkblue-panel pn" style="height:400px">
+                    
+                                <div class="darkblue-header" >
                                     <h5>YOUR OUTFIT</h5>
+                                    <div class="today">
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
+						</div><!-- /col-md-4 -->
 						
 						<div class="col-md-6 col-sm-6 mb">
-							<div class="darkblue-panel pn">
+							<div class="darkblue-panel pn " style="height:400px">
                                 <div class="darkblue-header">
                                     <h5>YOUR OUTFIT </h5>
+                                    <div class="tomorrow">
+                                    
+                                    </div>
                                    
                                 </div>
                             </div>
-                        </div> -->
-                        <!-- /col-md-4 -->
+						</div><!-- /col-md-4 -->
 						
 					</div><!-- /row -->
 					
@@ -274,7 +284,7 @@
     <script type="text/javascript" src="../facebook.js"></script>
     <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
     <script type="text/javascript" src="../weatherAPI.js"></script>
-	<script type="text/javascript" src="../outfitFinder.js"></script>
+	<!-- <script type="text/javascript" src="../outfitFinder.js"></script> -->
 	
 	<script type="application/javascript">
         $(document).ready(function () {
@@ -311,40 +321,28 @@
         }
     </script>
 
+    <!-- outfit combine -->
     <script type="text/javascript">
+    $(document).ready(function () {
     
-    // connect to clothes table
+        var bottoms = [];
+        var tops = [];
+        // var shoes = [];
 
-// run thru array clothes
-    // if (0 < weather <30 ) {
-        // warmth  = 9 10 8
-        // push array
-    //  }
-    //  30<weather<70{
-        //  warmth = 7 6 5 4
-    //  }
-    //  70<weather<90{
-        // warmth = 3 2 1
-    //  }
-// outfit array array[1] = top array[2] = bottom  array[3] = shoes
-    // math.random top 
-    // push to outfit array
-    // math.random bottom
-    // math.random shoes
+        var bottom = "";
+        var top = "";
+        // var shoe = "";
 
-// attr.() to the picture canvas in the html
-var db = require("../models");
+        var array  = [];
 
-var array  = [];
-
-var todayTemp = 0;
-var tomorrowTemp = 0;
+        var todayTemp = 0;
+        var tomorrowTemp = 0;
 
 //take temperature
 
 var queryURL = "https://api.darksky.net/forecast/3f01f0b65e47a50ee0477a2be1624c91/39.742043,-104.9903" ;
 
-var icons = new Skycons({"color": "gray"}); 
+// var icons = new Skycons({"color": "gray"}); 
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -354,31 +352,35 @@ $.ajax({
       tomorrowTemp  = response.hourly.data[12].temperature;
   });
 
-$("#combineToday").click(getCombine(todayTemp));
-$("#combineTomorrow").click(getCombine(tomorrowTemp));
+  console.log("sicaklik" , todayTemp); 
 
+$("#combineToday").click(function () {
+    getCombine(todayTemp);
+});
+$("#combineToday").click(function () {
+    showIt("today")
+});
+
+$("#combineTomorrow").click(function () {
+    getCombine(tomorrowTemp)
+});
+$("#combineTomorrow").click(function () {
+    showIt("tomorrow")
+});
 
 function getCombine(temp) {
     if (temp >= 0 && temp <= 30) {
         grabClothes(3)
+      
     } else if (temp >= 30 && temp <= 70) {
         grabClothes(2)
+       
     } else if (temp >= 70 && temp <= 90) {
         grabClothes(1)
+       
     }
-}
+} 
 
-
-var bottoms1 = [];
-var tops1 = [];
-
-var shoes = [];
-
-var bottoms2 = [];
-var tops2 = [];
-
-var bottoms3 = [];
-var tops3 = [];
 
 var url = window.location.search;
         var infoId;
@@ -391,95 +393,124 @@ var url = window.location.search;
         getClothes();
         }
 
-
-
     function getClothes(info) {
             infoId = info || "";
             if (infoId) {
             infoId = "/?info_id=" + infoId;
             }
+            console.log(infoId);
             $.get("/api/clothes" + infoId, function(data) {
                 console.log("Clothes", data);
 
-                // console.log(data[1].itemName);
                 clothes = data;
 
-                var warm = data.warmth
-                
-                if (warm == 1){
-
-                   bottoms1.push(data["Bottom"]);
-                   tops1.push(data["Top"]);
-                   shoes.push(data["Shoes"]);
-
-                } else if (warm == 2) {
-
-                    bottoms2.push(data["Bottom"]);
-                    tops2.push(data["Top"]);
-                    shoes.push(data["Shoes"]);
-
-                } else if (warm == 3) {
-
-                    bottoms3.push(data["Bottom"]);
-                    tops3.push(data["Top"]);
-                    shoes.push(data["Shoes"].itemName);
-                }
-
-                
-            });
-    }
-var outfit = [];
-
-function grabClothes(arg){  
-        if (arg == 1 ){
-
-            var top = tops1[Math.floor(tops1.length * math.random())];
-            var bottom = bottoms1[Math.floor(bottoms1.length * math.random())];
-            var shoes = shoes[Math.floor(shoes.length * math.random())];
-            outfit.push(top)
-            outfit.push(bottom)
-            outfit.push(shoes)
-
-
-        } else if (arg == 2) {
-
-            var top = tops2[Math.floor(tops2.length * math.random())];
-            var bottom = bottoms2[Math.floor(bottoms2.length * math.random())];
-            var shoes = shoes[Math.floor(shoes.length * math.random())];
-            outfit.push(top)
-            outfit.push(bottom)
-            outfit.push(shoes)     
-
-        
-        } else if (arg == 3) {
-            var top = tops3[Math.floor(tops3.length * math.random())];
-            var bottom = bottoms3[Math.floor(bottoms3.length * math.random())];
-            var shoes = shoes[Math.floor(shoes.length * math.random())];
-            outfit.push(top)
-            outfit.push(bottom)
-            outfit.push(shoes)
-
-        }
-        return outfit
+                console.log(clothes.itemName)
+            
+                bottoms = bottoms.concat(clothes.filter(item=>item.type == "Bottom"));
+                console.log(bottoms);
+                tops = tops.concat(clothes.filter(item=>item.type == "Top"));
+                // shoes = shoes.concat(clothes.filter(item=>item.type == "Shoes"));
+             
+    });
 }
 
-    var div = $("<div>");
-    div.addClass("col-md-6 mb darkblue-panel pn ")
+console.log(bottoms);
 
-    var bottom = $("<p>")
-    var top = $("<p>")
-    var shoes = $("<p>")
+        function grabClothes(arg) {  
+        // run filter that matches number passed in
+            let bottomsArray = bottoms.filter(item=>item.warmth == arg);
+            let topsArray = tops.filter(item=>item.warmth == arg);
+            // let shoesArray = shoes.filter(item=>item.warmth == arg);
 
-    top.text(outfit[0]); 
-    bottom.text(outfit[1]);
-    shoes.text(outfit[3]);
+            console.log(bottoms); 
+            console.log(tops);
+            // console.log(shoes);
 
-    div.append(top);
-    div.append(bottom);
-    div.append(shoes);
+            bottom = bottomsArray[Math.floor(bottomsArray.length * Math.random())];
+            top = topsArray[Math.floor(topsArray.length * Math.random())];
+            // shoe = shoesArray[Math.floor(shoesArray.length * Math.random())];
+
+        console.log({ bottom }); 
+
+console.log({ top });
+        }
 
 
+function showIt(arg){
+    var clothesContainerToday = "";
+
+    var outfitDiv = $("<div>");
+    var topName = $("<p>");
+    var bottomName = $("<p>"); 
+    // var shoesName = $("<p>");
+
+    topName.css({
+        color:"red",
+        margin:"5px"
+    })
+    bottomName.css({
+        color:"red",
+        margin:"5px"
+    })
+    // shoesName.css({
+    //     color:"red",
+    //     margin:"5px"
+    // })
+
+
+//picture
+    var topImage = $("<img>");
+    var bottomImage = $("<img>");
+    // var shoesImage = $("<img>");
+
+    topImage.css({
+        height: "135px",
+        width:"135px"
+    })
+
+    bottomImage.css({
+        height: "135px",
+        width:"135px"
+    })
+
+    // shoesImage.css({
+    //     height: "120px",
+    //     width:"120px"
+    // })
+
+
+    if (arg == "today"){
+        clothesContainerToday = $(".today");
+    } else if (arg == "tomorrow"){
+        clothesContainerToday = $(".tomorrow");
+    }
+   
+   topName.text(top.itemName);
+   bottomName.text(bottom.itemName);
+//    shoesName.text(shoe.itemName);
+
+   topImage.attr("src", top.picture);
+   bottomImage.attr("src", bottom.picture);
+//    shoesImage.attr("src", shoe.picture );
+
+   outfitDiv.append(topName)
+   outfitDiv.append(topImage)
+   outfitDiv.append(bottomName)
+   outfitDiv.append(bottomImage)
+//    outfitDiv.append(shoesName)
+//    outfitDiv.append(shoesImage)
+
+   //picture
+   
+
+
+
+
+   clothesContainerToday.append(outfitDiv)
     
+}    
+
+});
     </script>
   
 

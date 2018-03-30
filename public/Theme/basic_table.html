@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-
+    <link href="public/css/responsive.css" rel="stylesheet">
     <script src="assets/js/chart-master/Chart.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -54,7 +54,8 @@
             </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="login.html">Logout</a></li>
+                    <!-- <li><a class="logout" href="login.html">Logout</a></li> -->
+                    <li><a class="logout" href="../index.html" id="fbLink2">Logout</a></li>
             	</ul>
             </div>
         </header>
@@ -139,15 +140,14 @@
     <script type="text/javascript" src="../facebook.js"></script>
 	
     <script type="text/javascript">
-
         var clothesContainer = $(".content-panel");
-
         var url = window.location.search;
         var infoId;
 
         if (url.indexOf("?info_id=") !== -1) {
         infoId = url.split("=")[1];
         getPosts(infoId);
+        
         }
         else {
         getClothes();
@@ -157,12 +157,17 @@
             infoId = info || "";
             if (infoId) {
             infoId = "/?info_id=" + infoId;
+            console.log(infoId);
             }
             $.get("/api/clothes" + infoId, function(data) {
+                
                 console.log("Clothes", data);
-
-                console.log(data[1].itemName);
+                // console.log(data[1].itemName);
                 clothes = data;
+
+                var newBottoms = [];
+                newBottoms.push(clothes.filter(item=>item.type == "Top" && item.warmth == 1));
+                console.log(newBottoms);
                 if (!clothes || !clothes.length) {
                     displayEmpty(info);
                 }
@@ -171,7 +176,6 @@
                 }
             });
         }
-
         function initializeRows() {
             clothesContainer.empty();
             var clothesToAdd = [];
@@ -180,50 +184,31 @@
             }
                 clothesContainer.append(clothesToAdd);
         }
-
         function createNewRow(clothes) {
              var newClothesPanel = $("<div>");
              newClothesPanel.addClass("col-md-3 col-sm-3 mb white-panel pn");
               
              var newClothesName = $("<p>");
              var newClothesImage = $("<img>");
+             newClothesImage.css({
+                 width:"200px",
+                 height:"200px"
+             })
+             
              newClothesName.css({
                  color:"black"
              })
+             newClothesImage.attr("src", clothes.picture );
 
-             newClothesImage.attr("src", clothes.picture);
-             console.log(clothes.picture);
+              
              newClothesName.text(clothes.itemName + " ");
              newClothesPanel.append(newClothesName);
              newClothesPanel.append(newClothesImage);
              newClothesPanel.data("clothes", clothes);
              console.log(clothes)
              console.log(clothes.itemName);
-
              return newClothesPanel;
         }
     </script>
   </body>
 </html>
-
-<!-- var clothesContainerToday = $(".content-panel today");
-
-var outfitDiv = $("<div>");
-
-var topName = $("<p>");
-var bottomName = $("<p>"); 
-var shoesName = $("<p>");
-
-    topName.text(top);
-    bottomName.text(bottom);
-    shoesName.text(shoe);
-
-    outfitDiv.append(topName)
-    outfitDiv.append(bottomName)
-    outfitDiv.append(shoesName)
-
-    clothesContainerToday.append(outfitDiv)
-    
-
-
-    var clothesContainerTomorrow = $(".content-panel tomorrow"); -->

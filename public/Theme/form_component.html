@@ -54,7 +54,8 @@
             </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="../index.html" id="fbLink2">Logout</a></li>
+                    <!-- <li><a class="logout" href="login.html" id="fbLink2">Logout</a></li>-->
+                    <li><a class="logout" href="../index.html" id="fbLink2">Logout</a></li> 
             	</ul>
             </div>
         </header>
@@ -121,14 +122,14 @@
                       	
 
                       	<div class="col-md-8 col-sm-4 mb">
-                            <div class="form-panel">
+                            <div class="form-panel" style="background: black" >
                             <form>
                                 <div class="form-group">
-                                  <label for="exampleFormControlInput1">Item Name</label>
+                                  <label for="exampleFormControlInput1" style="color: white">Item Name</label>
                                   <input type="text" class="form-control" id="itemName">
                                 </div>
                                 <div class="form-group">
-                                  <label for="exampleFormControlSelect1">Color</label>
+                                  <label for="exampleFormControlSelect1" style="color: white">Color</label>
                                   <select class="form-control" id="color">
                                     <option>Black</option>
                                     <option>White</option>
@@ -140,38 +141,36 @@
                                   </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Type</label>
+                                    <label for="exampleFormControlSelect1" style="color: white">Type</label>
                                     <select class="form-control" id="itemType">
                                       <option>Bottom</option>
                                       <option>Top</option>
-                                      <option>Shoes</option>
-                                      <option>Accesories</option>
                                     </select>
                                   </div>
                                 <div class="form-group">
-                                  <label for="exampleFormControlSelect2">Warmth</label>
+                                  <label for="exampleFormControlSelect2" style="color: white">Warmth</label>
                                   <select class="form-control" id="itemWarmth">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
                                   </select>
                                 </div>
+                                <!-- <form ref='uploadForm' 
+                                    id='uploadForm' 
+                                    action='http://localhost:8000/upload' 
+                                    method='post' 
+                                    encType="multipart/form-data">
+                                    <input type="file" name="sampleFile" />
+                                    <input type='submit' value='Upload!' />
+                                <! </form> --> 
+                                <form>
                                 <form>
                                   <div class="form-group">
-                                    <label for="exampleFormControlFile1">Example file input</label>
-                                    <input type="file" class="form-control-file" id="itemPic">
+                                    <label for="exampleFormControlFile1" style="color: white">Example file input</label>
+                                    <input type="url" class="form-control-file" id="itemPic">
                                   </div>
                                 </form>
-                                <!-- <form ref='uploadForm' 
-                                        id='uploadForm' 
-                                        action='http://localhost:8080/api/clothes/picture' 
-                                        method='post' 
-                                        encType="multipart/form-data">
-                                        <input type="file" name="sampleFile" />
-                                        <input type='submit' value='Upload!'id ="add-btn" />
-                                </form> -->
-                               
-                                <button type ="submit" id ="add-btn" data-target="modal1">Add Your Item</button>
+                                <button type ="submit" id ="add-btn" data-target="modal1" style="color: black">Add Your Item</button>
                         
                               </form>
                               </div>

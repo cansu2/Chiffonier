@@ -1,4 +1,3 @@
-
 // Here we are building the URL we need to query the database
 
 // for converting string format API to API
@@ -19,13 +18,13 @@ function convertWord(str) {
 }
 
 //test here 
-
+var proxy = 'https://cors-anywhere.herokuapp.com/';
 var queryURL = "https://api.darksky.net/forecast/3f01f0b65e47a50ee0477a2be1624c91/39.742043,-104.9903" ;
 
 var icons = new Skycons({"color": "gray"}); 
 // Here we run our AJAX call to the DarkSky Weathere API
 $.ajax({
-    url: queryURL,
+    url: proxy + queryURL,
     method: "GET"
   })
   // We store all of the retrieved data inside of an object called "response"
@@ -59,4 +58,3 @@ $.ajax({
 
     console.log(response.currently.icon)
   });
-  

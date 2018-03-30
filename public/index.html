@@ -32,10 +32,10 @@
         <ul class="primary-nav">
 		  <!-- <li><a href="#banner">Home</a></li> -->
           <li><a href="#intro">About</a></li>
-          <li><a href="#services">We Do</a></li>
+          <li><a href="#services">What We Do</a></li>
           <!-- <li><a href="#Playlist">Playlist</a></li> -->
 		  <!-- <li><a href="#package">Albums</a></li> -->
-          <li><a href="#gallery">Shoping</a></li>
+          <!-- <li><a href="#gallery">Shoping</a></li> -->
           <!-- <li><a href="#teams">Our Team</a></li>  -->
           <!-- <li><a href="#contact">Contact</a></li> -->
         </ul>
@@ -62,7 +62,7 @@
   <div class="container">
     <div class="col-md-8 col-md-offset-2 text-center">
       <h3>What is Chiffonier?</h3>
-      <p>Chiffonier is an application that selects an outfit for the user based on weather, schedule, day of week, and what’s available in their closet. </p> 
+      <p>Chiffonier is an application that selects an outfit for you based on your current weather, schedule, day of week, and what’s available in your closet. </p> 
         <!-- <a href="#Signup" class="btn btn-large" onClick = "FB.getLoginStatus()">Sign Up with Facebook </a>  -->
 
         <!-- Display login status -->
@@ -82,26 +82,26 @@
 <section id="services" class="services service-section">
   <div class="container">
   <div class="section-header">
-                <h2 class="wow fadeInDown animated">We Do</h2>
-                <p class="wow fadeInDown animated">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget risus vitae massa <br> semper aliquam quis mattis quam.</p>
+                <h2 class="wow fadeInDown animated">What We Do</h2>
+                <p class="wow fadeInDown animated">We digitialize your wardrobe <br> making your life easier.</p>
             </div>
     <div class="row"> 
       <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-cloud"></span>
         <div class="services-content">
           <h5>WEATHER</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p>
+          <p>Our friend's at Darksky Weather API and Skycons use your location to determine what outfit is appropriate according to the current weather.</p>
         </div>
       </div>
       <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-calendar"></span>
         <div class="services-content">
           <h5>CALENDAR</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p>
+          <p>Incorporating your personal calendar is the next feature coming to Chiffonier. We will upload your schedule to pick out an outfit that coordinates with your day.</p>
         </div>
       </div> 
       <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-basket"></span>
         <div class="services-content">
           <h5>LAUNDRY</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p>
+          <p>When your take off your outfit choosen by Chiffonier, you will have the option to mark worn. After your specified amount of used clothes, we will remind you to do a wash.</p>
         </div>
       </div> 
     </div>
@@ -112,7 +112,7 @@
 <footer class="footer">
     <!-- needs to go to center -->
     <div class="container-fluid">
-            © 2018 CopyRight
+         
     </div>
 </footer>
 <!-- Footer section --> 
@@ -139,7 +139,6 @@
 <script src="js/retina.min.js"></script> 
 <script src="js/modernizr.js"></script> 
 <script src="js/main.js"></script> 
-
 <script type="text/javascript" src="js/jquery.contact.js"></script> 
 <script type="text/javascript" src="facebook.js"></script> 
 <script type="text/javascript" src="jPlayer-2.9.2/dist/jplayer/jquery.jplayer.min.js"></script>
@@ -165,7 +164,6 @@
         }
     });
 };
-
 // Load the JavaScript SDK asynchronously
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -174,7 +172,6 @@
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
 // Facebook login with JavaScript SDK
 function fbLogin() {
     FB.login(function (response) {
@@ -186,7 +183,6 @@ function fbLogin() {
         }
     }, {scope: 'email'});
 }
-
 // Fetch the user profile data from facebook
 function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
@@ -197,7 +193,6 @@ function getFbUserData(){
         document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>Locale:</b> '+response.locale+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';
     });
 }
-
 // Logout from facebook
 function fbLogout() {
     FB.logout(function() {
@@ -208,7 +203,6 @@ function fbLogout() {
         document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
     });
 }
-
 </script> -->
 
 </body>

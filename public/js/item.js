@@ -1,4 +1,6 @@
-
+// const express = require('express');
+// const fileUpload = require('express-fileupload');
+// const app = express();
 
 $(document).ready(function() {
  
@@ -25,7 +27,8 @@ $(document).ready(function() {
         type: itemType.val(),
         color: itemColor.val(),
         warmth: itemWarmth.val(),
-        picture: itemPicture.val()
+        picture: itemPicture.val(),
+        InfoId: window.localStorage.getItem('INFOID'),
       };
   
       console.log("new CLOTHES", newClothes);
@@ -38,7 +41,6 @@ $(document).ready(function() {
     });
   
 });
-
 
 
   });
